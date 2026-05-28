@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# 微信开发者工具本地私有配置（含本机编译设置）
+project.private.config.json
+
+# 依赖
+node_modules/
+
+# 日志
+*.log
+npm-debug.log*
+
+# 编辑器
+.idea/
+.vscode/
+*.swp

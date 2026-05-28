@@ -1,0 +1,61 @@
+<!--pages/result/result.wxml-->
+<view class="page-bg">
+  <view class="stars"></view>
+  <view class="wuxing-ring"></view>
+  <view class="bagua"></view>
+</view>
+
+<scroll-view
+  class="scroll-root"
+  scroll-y="{{true}}"
+  enhanced="{{true}}"
+  show-scrollbar="{{false}}"
+  scroll-into-view="{{scrollAnchor}}"
+  scroll-with-animation="{{false}}"
+  enable-flex="{{true}}">
+
+  <view class="hero">
+    <view class="title-zh">天机已启</view>
+    <view class="subtitle">{{ subtitle }}</view>
+  </view>
+
+  <!-- 命主信息 -->
+  <view class="card meta">
+    <view class="meta-row"><text class="k">尊讳</text><text class="v">{{ form.name }}</text></view>
+    <view class="meta-row"><text class="k">阴阳</text><text class="v">{{ form.gender === 'male' ? '阳（男）' : '阴（女）' }}</text></view>
+    <view class="meta-row"><text class="k">甲子</text><text class="v">{{ form.calendar === 'solar' ? '公历' : '农历' }} {{ form.birthDate }}</text></view>
+    <view class="meta-row"><text class="k">时辰</text><text class="v">{{ form.shichen }}</text></view>
+    <view class="meta-row"><text class="k">所问</text><text class="v">{{ topicsLabel }}</text></view>
+  </view>
+
+  <!-- 推算中动画 -->
+  <view wx:if="{{loading}}" class="loading">
+    <view class="taiji"></view>
+    <view class="loading-text">{{ loadingText }}</view>
+  </view>
+
+  <!-- 推演心法 -->
+  <view wx:if="{{thinking}}" class="card thinking">
+    <view class="card-title">▣ 推演心法</view>
+    <view class="text">{{ thinking }}<text class="cursor" wx:if="{{ !done }}">▍</text></view>
+  </view>
+
+  <!-- 卦象天书 -->
+  <view wx:if="{{answer}}" class="card answer">
+    <view class="card-title">☯ 卦象天书</view>
+    <view class="text">{{ answer }}<text class="cursor" wx:if="{{ !done }}">▍</text></view>
+  </view>
+
+  <view wx:if="{{error}}" class="card err">
+    <view class="card-title">✦ 天机受阻</view>
+    <view class="text">{{ error }}</view>
+  </view>
+
+  <view class="actions">
+    <button wx:if="{{done && !error}}" class="btn-back" bindtap="goCopy">📜 抄录天书</button>
+    <button class="btn-back outline" bindtap="goBack">↩ 重新起卦</button>
+  </view>
+
+  <!-- 自动滚动锚点 -->
+  <view id="{{scrollAnchor}}" class="scroll-anchor"></view>
+</scroll-view>

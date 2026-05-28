@@ -1,0 +1,150 @@
+/* app.wxss —— 全局样式：玄幻 · 五行 */
+page {
+  --c-gold: #d4af37;
+  --c-gold-soft: #f5d76e;
+  --c-purple: #2a0a4a;
+  --c-deep: #0a0118;
+  --c-ink: #e9d8a6;
+  --c-fire: #c0392b;
+  --c-water: #1f6feb;
+  --c-wood: #2e8b57;
+  --c-metal: #c0c0c0;
+  --c-earth: #b8860b;
+
+  background:
+    radial-gradient(ellipse at top, #2a0a4a 0%, #0a0118 60%, #000000 100%);
+  color: var(--c-ink);
+  font-family: "STKaiti", "KaiTi", "楷体", "Songti SC", serif;
+  min-height: 100vh;
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 星空 */
+.stars::before,
+.stars::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, #fff8d6 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 80%, #fff8d6 50%, transparent 51%),
+    radial-gradient(1px 1px at 40% 60%, #fff8d6 50%, transparent 51%),
+    radial-gradient(2px 2px at 85% 15%, #ffe9a8 50%, transparent 51%),
+    radial-gradient(1px 1px at 10% 85%, #fff8d6 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 55% 25%, #ffe9a8 50%, transparent 51%),
+    radial-gradient(1px 1px at 30% 75%, #fff8d6 50%, transparent 51%),
+    radial-gradient(1px 1px at 90% 50%, #fff8d6 50%, transparent 51%);
+  background-size: 600rpx 800rpx;
+  animation: twinkle 6s ease-in-out infinite alternate;
+  opacity: 0.7;
+}
+.stars::after {
+  background-position: 100rpx 200rpx;
+  animation-duration: 9s;
+  opacity: 0.5;
+}
+@keyframes twinkle {
+  0%   { opacity: 0.25; }
+  100% { opacity: 0.85; }
+}
+
+/* 五行光晕环 */
+.wuxing-ring {
+  position: absolute;
+  width: 900rpx;
+  height: 900rpx;
+  left: 50%;
+  top: 40%;
+  margin-left: -450rpx;
+  margin-top: -450rpx;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(192,57,43,0.25),
+    rgba(46,139,87,0.25),
+    rgba(31,111,235,0.25),
+    rgba(184,134,11,0.25),
+    rgba(192,192,192,0.25),
+    rgba(192,57,43,0.25)
+  );
+  filter: blur(60rpx);
+  animation: spin 30s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* 八卦盘（纯 CSS） */
+.bagua {
+  position: absolute;
+  width: 360rpx;
+  height: 360rpx;
+  left: 50%;
+  top: 50%;
+  margin-left: -180rpx;
+  margin-top: -180rpx;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 25%, #fff 0 24rpx, transparent 25rpx),
+    radial-gradient(circle at 50% 75%, #000 0 24rpx, transparent 25rpx),
+    linear-gradient(90deg, #f5e9c5 0 50%, #1a0d2a 50% 100%);
+  box-shadow:
+    0 0 60rpx rgba(212,175,55,0.45),
+    inset 0 0 40rpx rgba(0,0,0,0.5);
+  animation: spin 26s linear infinite reverse;
+  opacity: 0.55;
+}
+.bagua::before,
+.bagua::after {
+  content: "";
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  left: 50%;
+  margin-left: -40rpx;
+}
+.bagua::before { /* 上半圆抱 */
+  top: 12rpx;
+  background: #1a0d2a;
+}
+.bagua::after { /* 下半圆抱 */
+  bottom: 12rpx;
+  background: #f5e9c5;
+}
+
+/* 通用标题 */
+.title-zh {
+  font-size: 64rpx;
+  letter-spacing: 12rpx;
+  text-align: center;
+  color: var(--c-gold);
+  text-shadow: 0 0 20rpx rgba(212,175,55,0.65), 0 0 40rpx rgba(212,175,55,0.35);
+  font-weight: bold;
+}
+.subtitle {
+  text-align: center;
+  font-size: 24rpx;
+  letter-spacing: 8rpx;
+  color: rgba(245,215,110,0.8);
+  margin-top: 8rpx;
+}
+
+/* 卡片 */
+.card {
+  margin: 32rpx;
+  padding: 36rpx;
+  border-radius: 18rpx;
+  background: linear-gradient(160deg, rgba(42,10,74,0.55), rgba(10,1,24,0.85));
+  border: 1rpx solid rgba(212,175,55,0.4);
+  box-shadow: 0 0 40rpx rgba(212,175,55,0.15), inset 0 0 30rpx rgba(212,175,55,0.08);
+  backdrop-filter: blur(6rpx);
+}

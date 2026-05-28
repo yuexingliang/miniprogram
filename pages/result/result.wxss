@@ -1,0 +1,124 @@
+/* pages/result/result.wxss */
+.scroll-root {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  /* 给底部留白，最后一段也能完全露出 */
+  padding-bottom: 80rpx;
+}
+.scroll-anchor {
+  height: 1rpx;
+  width: 100%;
+}
+.hero {
+  padding: 60rpx 0 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.meta .meta-row {
+  display: flex;
+  margin-bottom: 14rpx;
+  font-size: 26rpx;
+  letter-spacing: 2rpx;
+}
+.meta .k {
+  width: 110rpx;
+  color: var(--c-gold-soft);
+  letter-spacing: 6rpx;
+}
+.meta .v {
+  flex: 1;
+  color: var(--c-ink);
+}
+
+/* 太极加载 */
+.loading {
+  margin: 60rpx auto;
+  text-align: center;
+}
+.taiji {
+  margin: 0 auto;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 25%, #fff 0 22rpx, transparent 23rpx),
+    radial-gradient(circle at 50% 75%, #000 0 22rpx, transparent 23rpx),
+    linear-gradient(90deg, #f5e9c5 0 50%, #1a0d2a 50% 100%);
+  box-shadow: 0 0 50rpx rgba(212,175,55,0.6);
+  animation: taiji-spin 4s linear infinite;
+}
+.taiji::before, .taiji::after {
+  content: "";
+  position: absolute;
+}
+@keyframes taiji-spin {
+  to { transform: rotate(360deg); }
+}
+.loading-text {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  letter-spacing: 6rpx;
+  color: var(--c-gold-soft);
+  text-shadow: 0 0 16rpx rgba(212,175,55,0.6);
+}
+
+/* 卡片标题 */
+.card-title {
+  font-size: 30rpx;
+  letter-spacing: 6rpx;
+  color: var(--c-gold);
+  margin-bottom: 20rpx;
+  border-left: 4rpx solid var(--c-gold);
+  padding-left: 16rpx;
+}
+
+/* 文本区 */
+.text {
+  font-size: 30rpx;
+  line-height: 1.85;
+  color: var(--c-ink);
+  letter-spacing: 1rpx;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.thinking .text {
+  font-size: 26rpx;
+  color: rgba(233,216,166,0.65);
+  font-style: italic;
+}
+.cursor {
+  display: inline-block;
+  color: var(--c-gold);
+  animation: blink 1s steps(2, start) infinite;
+  margin-left: 4rpx;
+}
+@keyframes blink {
+  to { opacity: 0; }
+}
+
+.err .card-title { color: #ff6b6b; border-left-color: #ff6b6b; }
+.err .text { color: #ffb3b3; }
+
+.actions {
+  display: flex;
+  gap: 20rpx;
+  margin: 40rpx 32rpx 80rpx;
+}
+.btn-back {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  letter-spacing: 6rpx;
+  color: #1a0d2a;
+  background: linear-gradient(135deg, #f5d76e, #d4af37);
+  border-radius: 12rpx;
+  border: 2rpx solid #fff5cc;
+}
+.btn-back.outline {
+  background: transparent;
+  color: var(--c-gold-soft);
+  border: 2rpx solid var(--c-gold);
+}

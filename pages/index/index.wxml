@@ -1,0 +1,94 @@
+<!--pages/index/index.wxml-->
+<view class="page-bg">
+  <view class="stars"></view>
+  <view class="wuxing-ring"></view>
+  <view class="bagua"></view>
+</view>
+
+<view class="hero">
+  <view class="title-zh">玄机阁</view>
+  <view class="subtitle">乾坤浩荡 · 五行推演 · 一念知命</view>
+</view>
+
+<!-- 五行飘印 -->
+<view class="wuxing-tags">
+  <text class="wx-tag wx-jin">金</text>
+  <text class="wx-tag wx-mu">木</text>
+  <text class="wx-tag wx-shui">水</text>
+  <text class="wx-tag wx-huo">火</text>
+  <text class="wx-tag wx-tu">土</text>
+</view>
+
+<view class="card form">
+  <!-- 尊姓大名 -->
+  <view class="row">
+    <view class="label">尊姓大名</view>
+    <input
+      class="input"
+      placeholder="敢问施主名讳"
+      placeholder-class="ph"
+      maxlength="20"
+      value="{{name}}"
+      bindinput="onName" />
+  </view>
+
+  <!-- 阴阳 -->
+  <view class="row">
+    <view class="label">阴阳之分</view>
+    <view class="seg">
+      <view class="seg-item {{gender==='male'?'active':''}}" data-v="male" bindtap="onGender">☯ 阳（男）</view>
+      <view class="seg-item {{gender==='female'?'active':''}}" data-v="female" bindtap="onGender">☯ 阴（女）</view>
+    </view>
+  </view>
+
+  <!-- 历法 -->
+  <view class="row">
+    <view class="label">历法之轨</view>
+    <view class="seg">
+      <view class="seg-item {{calendar==='solar'?'active':''}}" data-v="solar" bindtap="onCalendar">☀ 公历</view>
+      <view class="seg-item {{calendar==='lunar'?'active':''}}" data-v="lunar" bindtap="onCalendar">🌙 农历</view>
+    </view>
+  </view>
+
+  <!-- 降生甲子 -->
+  <view class="row">
+    <view class="label">降生甲子</view>
+    <picker mode="date" value="{{birthDate}}" start="1900-01-01" end="2099-12-31" bindchange="onDate">
+      <view class="picker-box">{{birthDate || '请择良辰之日'}}</view>
+    </picker>
+  </view>
+
+  <!-- 时辰 -->
+  <view class="row">
+    <view class="label">降生时辰</view>
+    <picker mode="selector" range="{{shichenList}}" value="{{shichenIndex}}" bindchange="onShichen">
+      <view class="picker-box">{{shichenList[shichenIndex]}}</view>
+    </picker>
+  </view>
+
+  <!-- 占算之事 -->
+  <view class="row col">
+    <view class="label">问命之事 <text class="hint">（可多选）</text></view>
+    <view class="topics">
+      <view
+        wx:for="{{topics}}"
+        wx:key="key"
+        class="topic {{item.checked?'topic-on':''}}"
+        bindtap="toggleTopic"
+        data-key="{{item.key}}">
+        <text class="topic-icon">{{item.icon}}</text>
+        <text>{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn-divine" bindtap="goDivine" hover-class="btn-hover">
+    <view class="btn-inner">
+      <text class="btn-rune">☰</text>
+      <text class="btn-text">起卦推命</text>
+      <text class="btn-rune">☷</text>
+    </view>
+  </button>
+
+  <view class="tip">※ 命由天定 · 运由己生 · 仅作参玩</view>
+</view>
